@@ -1,10 +1,7 @@
-// import React from "react";
-import React, { useState } from "react";
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
-export default function Portfolio({ projectList = [], selected,onSelectFilter}) {
-  let id = 0;
-
-
+export default function Portfolio({ projectList = [], selected }) {
   projectList.sort((a, b) => {
     if (a.category === selected && b.category !== selected) {
       return -1;
@@ -13,11 +10,12 @@ export default function Portfolio({ projectList = [], selected,onSelectFilter}) 
     }
     return 0;
   });
+
   return (
     <div className="portfolio-container">
       {projectList.map((project) => (
-        <div key={id++} className="portfolio-item">
-          <img src={project.img} alt={project.category} />
+        <div key={uuidv4()} className="portfolio-item">
+          <img key={uuidv4()} src={project.img} alt={project.category} />
         </div>
       ))}
     </div>
